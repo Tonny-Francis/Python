@@ -18,11 +18,12 @@ class Agenda:
             arquivo.write(str(nome) + '\n')
             arquivo.write(str(numero) + '\n')
             arquivo.write(str(email) + '\n')
-            arquivo.write(str(' ') + '\n')
         arquivo.close()
     
-    def Remove(email):
+    def Remove(email, funcao):
+        #Função Responsavel por Procurar a Posição do Email
         lista = []
+        auxiliar = []
         posicao = 0
 
         with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
@@ -40,12 +41,16 @@ class Agenda:
         dados = posicao -3
 
         for controle in range(3):
+            auxiliar.append(lista[dados])
             lista.pop(dados)
 
-        with open('1-Trabalho-Agenda.txt', 'w') as arquivo:
-            for linha in lista:
-                arquivo.write(str(linha))
-            arquivo.close
+        if funcao == True:
+            with open('1-Trabalho-Agenda.txt', 'w') as arquivo:
+                for linha in lista:
+                    arquivo.write(str(linha))
+                arquivo.close
+        else:
+            return auxiliar
 #Funções
 def Adicionar():
     email = str(input('Email do Contato: '))
@@ -56,6 +61,7 @@ def Adicionar():
         print('Tente Novamente')
         time.sleep(2)
         email = str(input('Email do Contato: '))
+        auxiliar = Agenda.Leitura(email)
 
     nome = str(input('Nome do Contato: '))
     numero = str(input('Número do Contato: '))
@@ -73,13 +79,26 @@ def Editar():
         time.sleep(2)
         email = str(input('Digite o Email do Contato que\nDeseja Editar\n>> '))
     
-    Agenda.Remove(email)
-
-
-
+    Agenda.Remove(email, True)
+    Adicionar()
 
 def Buscar():
-    pass
+    contato = []
+    email = str(input('Dgite o Email do Contato que\nDeseja Buscar\n>>'))
+    auxiliar = Agenda.Leitura(email)
+
+    while auxiliar != True:
+        print('Este Email não Consta nos Contato')
+        print('Tente Novamente')
+        time.sleep(2)
+        email = str(input('Digite o Email do Contato que\nDeseja Buscar\n>> '))
+
+    contato = Agenda.Remove(email, False)
+    print('Contato {} Encontrado'.format(contato[0]))
+    print('Nome: {}'.format(contato[0]))
+    print('Número: {}'.format(contato[1]))
+    print('Email: {}'.format(contato[2]))
+
 
 def Listar():
     pass
