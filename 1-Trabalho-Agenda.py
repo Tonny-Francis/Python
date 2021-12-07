@@ -5,7 +5,7 @@ import time
 #Variáveis/Listas/classes...
 class Agenda:
 
-    def Leitura(email):
+    def Leitura(self, email):
         with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
             for linha in arquivo:
                 if email in linha:
@@ -13,13 +13,13 @@ class Agenda:
             arquivo.close()
             return False
 
-    def Escrita(nome, numero, email):
+    def Escrita(self, nome, numero, email):
         with open('1-Trabalho-Agenda.txt', 'a') as arquivo:
             arquivo.write(str(nome) + '\n')
             arquivo.write(str(numero) + '\n')
             arquivo.write(str(email) + '\n')
         arquivo.close()
-    
+
     def Remove(email, funcao):
         #Função Responsavel por Procurar a Posição do Email
         lista = []
@@ -113,15 +113,24 @@ def Buscar():
 
 def Listar():
     lista = []
-    lista = Agenda.Lista()
+    auxiliar = []
 
-    for contato in range(len(lista)):
+    with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
+        for linha in arquivo:
+            lista.append(linha.rstrip('\n'))
+        arquivo.close
         
-        print('Contato {}'.format(contato +1))
-        print('Nome: {}'.format())
-        print('Número: {}'.format())
-        print('Email: {}'.format())
-    pass
+    for x in range(int(len(lista)/3)):
+        for controle in range(3):
+            auxiliar.append(lista[0])
+            lista.pop(0)
+
+        print('\nContato {}\n'.format(x+1))
+        print('Nome: {}'.format(auxiliar[0]))
+        print('Número: {}'.format(auxiliar[1]))
+        print('Email: {}'.format(auxiliar[2]))
+        auxiliar.clear()
+    
 
 def Remover():
     email = str(input('Dgite o Email do Contato que\nDeseja Remover\n>>'))
