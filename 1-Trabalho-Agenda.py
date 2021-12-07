@@ -51,6 +51,17 @@ class Agenda:
                 arquivo.close
         else:
             return auxiliar
+    
+    def Lista():
+        lista = []
+
+        with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
+            for linha in arquivo:
+                lista.append(linha)
+            arquivo.close()
+
+        return lista
+
 #Funções
 def Adicionar():
     email = str(input('Email do Contato: '))
@@ -101,10 +112,29 @@ def Buscar():
 
 
 def Listar():
+    lista = []
+    lista = Agenda.Lista()
+
+    for contato in range(len(lista)):
+        
+        print('Contato {}'.format(contato +1))
+        print('Nome: {}'.format())
+        print('Número: {}'.format())
+        print('Email: {}'.format())
     pass
 
 def Remover():
-    pass
+    email = str(input('Dgite o Email do Contato que\nDeseja Remover\n>>'))
+    auxiliar = Agenda.Leitura(email)
+
+    while auxiliar != True:
+        print('Este Email não Consta nos Contato')
+        print('Tente Novamente')
+        time.sleep(2)
+        email = str(input('Digite o Email do Contato que\nDeseja Remover\n>> '))
+    
+    Agenda.Remove(email, True)
+    print('Contato Removido!!')
 
 def LimpaTela():
     if os.name == "nt":
@@ -151,6 +181,7 @@ def ProgramaPrincipal():
             print('-+-'*10)
             time.sleep(2)
             LimpaTela()
+            controle = False
         else:
             LimpaTela()
             print('-+-'*10)
