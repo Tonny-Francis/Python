@@ -2,10 +2,11 @@
 import os
 import time
 
-#Variáveis/Listas/classes...
+#Class responsável por ler e atribuir valores no txt
 class Agenda:
 
-    def Leitura(self, email):
+    #Faz apenas a leitura do arquivo e verifica se email se encontra
+    def Leitura(email):
         with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
             for linha in arquivo:
                 if email in linha:
@@ -13,15 +14,17 @@ class Agenda:
             arquivo.close()
             return False
 
-    def Escrita(self, nome, numero, email):
+    #Faz apenas a escrita de dados no arquivo
+    def Escrita(nome, numero, email):
         with open('1-Trabalho-Agenda.txt', 'a') as arquivo:
             arquivo.write(str(nome) + '\n')
             arquivo.write(str(numero) + '\n')
             arquivo.write(str(email) + '\n')
         arquivo.close()
 
-    def Remove(email, funcao):
-        #Função Responsavel por Procurar a Posição do Email
+    #Essa função tem duas utilidades, sendo remover um contato e retornar uma lista
+    #com todos os daddos de um contato
+    def Remove(email, utilidade):
         lista = []
         auxiliar = []
         posicao = 0
@@ -44,74 +47,83 @@ class Agenda:
             auxiliar.append(lista[dados])
             lista.pop(dados)
 
-        if funcao == True:
+        if utilidade == True:
             with open('1-Trabalho-Agenda.txt', 'w') as arquivo:
                 for linha in lista:
                     arquivo.write(str(linha))
                 arquivo.close
         else:
             return auxiliar
-    
-    def Lista():
-        lista = []
 
-        with open('1-Trabalho-Agenda.txt', 'r') as arquivo:
-            for linha in arquivo:
-                lista.append(linha)
-            arquivo.close()
-
-        return lista
-
-#Funções
+#Função responsável por adicionar novos contatos
 def Adicionar():
-    email = str(input('Email do Contato: '))
+    LimpaTela()
+    print('-+-'*10)
+    email = str(input('Email do Contato: ')).lower()
     auxiliar = Agenda.Leitura(email)
 
     while auxiliar != False:
         print('Email já Registrado!!')
         print('Tente Novamente')
-        time.sleep(2)
-        email = str(input('Email do Contato: '))
+        time.sleep(3)
+        print('-+-'*10)
+        email = str(input('Email do Contato: ')).lower()
         auxiliar = Agenda.Leitura(email)
 
-    nome = str(input('Nome do Contato: '))
+    nome = str(input('Nome do Contato: ')).lower()
     numero = str(input('Número do Contato: '))
     Agenda.Escrita(nome, numero, email)
 
-    print('Contato {} Registrado com Sucessso!!'.format(nome))
+    print('-+-'*10)
+    print('Contato {}\nRegistrado com Sucessso!!'.format(nome))
+    print('-+-'*10)
+    time.sleep(3)
+    LimpaTela()
 
+#Função responsável por editar contatos
 def Editar():
-    email = str(input('Digite o Email do Contato que\nDeseja Editar\n>> '))
+    LimpaTela()
+    print('-+-'*10)
+    email = str(input('Digite o Email do Contato que\nDeseja Editar: ')).lower()
     auxiliar = Agenda.Leitura(email)
 
     while auxiliar != True:
         print('Esse Contato não Existe!!')
         print('Tente Novamente')
         time.sleep(2)
-        email = str(input('Digite o Email do Contato que\nDeseja Editar\n>> '))
+        email = str(input('Digite o Email do Contato que\nDeseja Editar\n>> ')).lower()
     
     Agenda.Remove(email, True)
     Adicionar()
 
+#Função responsável por buscar um contato em específico
 def Buscar():
+    LimpaTela()
+    print('-+-'*10)
     contato = []
-    email = str(input('Dgite o Email do Contato que\nDeseja Buscar\n>>'))
+    email = str(input('Dgite o Email do Contato que\nDeseja Buscar: ')).lower()
     auxiliar = Agenda.Leitura(email)
 
     while auxiliar != True:
         print('Este Email não Consta nos Contato')
         print('Tente Novamente')
         time.sleep(2)
-        email = str(input('Digite o Email do Contato que\nDeseja Buscar\n>> '))
+        email = str(input('Digite o Email do Contato que\nDeseja Buscar\n>> ')).lower
 
     contato = Agenda.Remove(email, False)
-    print('Contato {} Encontrado'.format(contato[0]))
+    
+    print('\nDados do Contato'.format(contato[0]))
     print('Nome: {}'.format(contato[0]))
     print('Número: {}'.format(contato[1]))
-    print('Email: {}'.format(contato[2]))
+    print('Email: {}\n'.format(contato[2]))
 
+    print('-+-'*10)
+    time.sleep(10)
+    LimpaTela()
 
+#Função responsável por listar todos os contatos em ordem
 def Listar():
+    LimpaTela()
     lista = []
     auxiliar = []
 
@@ -119,39 +131,54 @@ def Listar():
         for linha in arquivo:
             lista.append(linha.rstrip('\n'))
         arquivo.close
-        
+
     for x in range(int(len(lista)/3)):
         for controle in range(3):
             auxiliar.append(lista[0])
             lista.pop(0)
 
-        print('\nContato {}\n'.format(x+1))
+        print('-+-'*10)
+        print('{:>17} {}\n'.format('Contato', x+1))
         print('Nome: {}'.format(auxiliar[0]))
         print('Número: {}'.format(auxiliar[1]))
         print('Email: {}'.format(auxiliar[2]))
         auxiliar.clear()
     
+    print('-+-'*10)
+    input('\nPressione Enter para Sair...')
+    LimpaTela()
 
+#Função responsável por remover um contatos
 def Remover():
-    email = str(input('Dgite o Email do Contato que\nDeseja Remover\n>>'))
+    LimpaTela()
+    email = str(input('Email do Contato a ser Removido:\n')).lower()
     auxiliar = Agenda.Leitura(email)
 
     while auxiliar != True:
+        LimpaTela()
         print('Este Email não Consta nos Contato')
         print('Tente Novamente')
-        time.sleep(2)
-        email = str(input('Digite o Email do Contato que\nDeseja Remover\n>> '))
+        time.sleep(3)
+        LimpaTela()
+        email = str(input('Email do Contato a ser Removido:\n')).lower()
     
     Agenda.Remove(email, True)
+    LimpaTela()
     print('Contato Removido!!')
+    print('-+-'*10)
+    time.sleep(3)
 
+#Função responsável por vericar qual o sistema e aplicar os devidos
+#comandos para limpar o screen 
 def LimpaTela():
     if os.name == "nt":
         os.system("clear")
     else:
         os.system("cls")
 
+#Função responsavel por organizar a agenda com as devidas funções e seleção de menu
 def ProgramaPrincipal():
+    LimpaTela()
     controle = True
     while controle != False:
         #Titulo
