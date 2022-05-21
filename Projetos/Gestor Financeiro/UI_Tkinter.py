@@ -4,46 +4,49 @@ from tkinter import *
 class Screen_Sign_IN():
     def __init__(self):
         #Inicializações
-        self.Sing_IN = Tk()
+        self.Sign_IN = Tk()
         self.Screen()
         self.Frame()
-        self.Label()
+        self.BackGraund()
         self.Widgets()
         self.Button()
 
         #Loop
-        self.Sing_IN.mainloop()
+        self.Sign_IN.mainloop()
     
     def Screen(self):
         #Dimensões do screen
-        self.largura_screen = self.Sing_IN.winfo_screenwidth()
-        self.altura_screen = self.Sing_IN.winfo_screenheight()
+        self.largura_screen = self.Sign_IN.winfo_screenwidth()
+        self.altura_screen = self.Sign_IN.winfo_screenheight()
 
         #Dimensões da janela
-        self.largura = int(self.largura_screen - self.largura_screen * 0.75)
-        self.altura = int(self.altura_screen - self.altura_screen * 0.6)
+        self.largura = 720
+        self.altura = 480
 
         #Posicionamento da janela no screen
         self.posx = int((self.largura_screen / 2) - (self.largura / 2))
         self.posy = int((self.altura_screen / 2) - (self.altura / 1.8))
 
         #Icone da janela
-        self.Sing_IN.iconbitmap("Gestor Financeiro\IMG\IMG1.ico")
+        #self.Sing_IN.iconbitmap("Gestor Financeiro\IMG\IMG1.ico")
 
         #Nome da Aplicação
-        self.Sing_IN.title('Gestor Financeiro')
+        self.Sign_IN.title('Gestor Financeiro')
 
         #Define o tamanho da janela
-        self.Sing_IN.geometry('{}x{}+{}+{}'.format(self.largura, self.altura, self.posx, self.posy))
+        self.Sign_IN.geometry('{}x{}+{}+{}'.format(self.largura, self.altura, self.posx, self.posy))
 
         #Trava o redimensionamento da janela
-        self.Sing_IN.resizable(False, False)
+        self.Sign_IN.resizable(False, False)
 
     def Frame(self):
-        pass
+        self._BackGraund = Frame(self.Sign_IN)
 
-    def Label(self):
-        pass
+    def BackGraund(self):
+        Img_1 = PhotoImage(file = 'IMG\Login\BackGraund.png')
+        Canvas_BackGraund = Canvas(self.Sign_IN, width = 720, height = 480)
+        Canvas_BackGraund.pack(fill = "both", expand = True) 
+        Canvas_BackGraund.create_image( 0, 0, image = Img_1, anchor = "nw")
 
     def Widgets(self):
         pass
