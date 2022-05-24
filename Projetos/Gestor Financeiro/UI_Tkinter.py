@@ -1,4 +1,6 @@
 from tkinter import *
+import os
+from PIL import Image, ImageTk
 
 # Class das Instâncias
 class Screen_Sign_IN():
@@ -8,7 +10,7 @@ class Screen_Sign_IN():
         self.Screen()
         self.Frame()
         self.BackGraund()
-        self.Widgets()
+        self.TextBox()
         self.Button()
 
         #Loop
@@ -22,16 +24,20 @@ class Screen_Sign_IN():
         #Dimensões da janela
         self.largura = 720
         self.altura = 480
+        
+        #Canvas
+        self.canvas = Canvas(self.Sign_IN, width = self.largura, height = self.altura, bg = 'white')
+        self.canvas.pack()
 
         #Posicionamento da janela no screen
         self.posx = int((self.largura_screen / 2) - (self.largura / 2))
         self.posy = int((self.altura_screen / 2) - (self.altura / 1.8))
 
         #Icone da janela
-        #self.Sing_IN.iconbitmap("Gestor Financeiro\IMG\IMG1.ico")
+        #self.Sign_IN.iconbitmap('Python/Projetos/Gestor Financeiro/IMG/IMG1.ico')
 
         #Nome da Aplicação
-        self.Sign_IN.title('Gestor Financeiro')
+        #self.Sign_IN.title('Gestor Financeiro')
 
         #Define o tamanho da janela
         self.Sign_IN.geometry('{}x{}+{}+{}'.format(self.largura, self.altura, self.posx, self.posy))
@@ -40,15 +46,13 @@ class Screen_Sign_IN():
         self.Sign_IN.resizable(False, False)
 
     def Frame(self):
-        self._BackGraund = Frame(self.Sign_IN)
+        pass
 
     def BackGraund(self):
-        Img_1 = PhotoImage(file = 'IMG\Login\BackGraund.png')
-        Canvas_BackGraund = Canvas(self.Sign_IN, width = 720, height = 480)
-        Canvas_BackGraund.pack(fill = "both", expand = True) 
-        Canvas_BackGraund.create_image( 0, 0, image = Img_1, anchor = "nw")
+        BackGraund = PhotoImage(file = 'Python/Projetos/Gestor Financeiro/IMG/Login/BackGraund.png')
+        BackGraund_Image = self.canvas.create_image(0,0, anchor = NW, image = BackGraund)
 
-    def Widgets(self):
+    def TextBox(self):
         pass
 
     def Button(self):
