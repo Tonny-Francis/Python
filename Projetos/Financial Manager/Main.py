@@ -3,11 +3,11 @@
 Projeto: Financial Manager      Autor: Tonny Francis
 Data de Inicio: 03/06/2022      Ultima Modificação: 03/06/2022
 
-Objetivo da Aplicação: Criar uma aplicação onde o usúario pode 
+Objetivo da Aplicação: Criar uma aplicação onde o usuário possa 
 fazer o gerenciamento de suas finanças mensais e obter um extrato.
 
 Objetivo Pessoal: Obter conhecimento e praticar sobre desenvolvimento 
-de interfaces gráficas.
+de interfaces gráficas e banco de dados.
 ----------------------------------------------------------------------
 """
 

@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QWidget, QPushButton, QLabel, QLineEdit
 from PySide6.QtGui import QPixmap, QFontDatabase
 from PySide6.QtCore import Qt
 
-#Janela de Auntenticação de Usúario
+#Janela de Auntenticação de Usuário
 class Window_Login(QWidget):
     def __init__(self):
         super().__init__()
@@ -13,6 +13,7 @@ class Window_Login(QWidget):
         #Inicializações das Funções
         self.Window_Config()
         self.BackGraund()
+        self.Label()
         self.TextBox()
         self.Button()
         self.show()
@@ -26,6 +27,37 @@ class Window_Login(QWidget):
         Label_BackGraund = QLabel(self)
         Label_BackGraund.setPixmap(Img)
 
+    def Label(self):
+        Login = QLabel('Login', self)
+        Login.setGeometry(418, 145, 84, 54)
+        Login.setStyleSheet(""" 
+            QLabel{
+                font-family: Itim;
+                font-size: 36px;
+                color: white;
+            }
+        """)
+
+        User = QLabel('User', self)
+        User.setGeometry(392, 194, 47, 17)
+        User.setStyleSheet(""" 
+            QLabel{
+                font-family: Itim;
+                font-size: 14px;
+                color: white;
+            }
+        """)
+
+        Password = QLabel('Password', self)
+        Password.setGeometry(392, 243, 65, 17)
+        Password.setStyleSheet(""" 
+            QLabel{
+                font-family: Itim;
+                font-size: 14px;
+                color: white;
+            }
+        """)
+
     def TextBox(self):
         User = QLineEdit('',self)
         User.setGeometry(380, 211, 160, 30)
@@ -38,29 +70,29 @@ class Window_Login(QWidget):
                 font-size: 16px
             }
             QLineEdit:hover{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
             QLineEdit:focus{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
         """)
 
-        Passorwd = QLineEdit('',self)
-        Passorwd.setEchoMode(QLineEdit.EchoMode.Password)
-        Passorwd.setAlignment(Qt.AlignCenter)
-        Passorwd.setGeometry(380, 260, 160, 30)
-        Passorwd.setMaxLength(15)
-        Passorwd.setStyleSheet(""" 
+        Password = QLineEdit('',self)
+        Password.setEchoMode(QLineEdit.EchoMode.Password)
+        Password.setAlignment(Qt.AlignCenter)
+        Password.setGeometry(380, 260, 160, 30)
+        Password.setMaxLength(15)
+        Password.setStyleSheet(""" 
             QLineEdit{
                 border-radius: 15px;
                 font-family: Itim;
                 font-size: 16px
             }
             QLineEdit:hover{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
             QLineEdit:focus{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
         """)
     def Button(self):
@@ -69,14 +101,14 @@ class Window_Login(QWidget):
         #Get_Start.setFont('Itim')
         Get_Start.setStyleSheet(""" 
             QPushButton{
-                background-color: #525E70; 
+                background-color: #242333; 
                 border-radius: 15px; 
                 color: white;
                 font-family: Itim;
                 font-size: 16px
             }
             QPushButton:hover{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
         """)
 
@@ -85,14 +117,14 @@ class Window_Login(QWidget):
         #Get_Start.setFont('Itim')
         Sign_Up.setStyleSheet(""" 
             QPushButton{
-                background-color: #525E70; 
+                background-color: #242333; 
                 border-radius: 15px; 
                 color: white;
                 font-family: Itim;
                 font-size: 16px
             }
             QPushButton:hover{
-                border: 2px solid #38A2D7;
+                border: 2px solid #00FFD4;
             }
         """)
 
