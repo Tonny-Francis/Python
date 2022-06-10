@@ -1,15 +1,13 @@
-from msilib.schema import Class
-import os
-from PySide6.QtWidgets import QWidget, QPushButton, QLabel, QLineEdit
+from PySide6.QtWidgets import QAbstractButton, QWidget, QPushButton, QLabel, QLineEdit
 from PySide6.QtGui import QPixmap, QFontDatabase
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Slot
 
 #Janela de Auntenticação de Usuário
 class Window_Login(QWidget):
     def __init__(self):
         super().__init__()
         #Importação de Fonte
-        QFontDatabase.addApplicationFont('Python/Projetos/Financial Manager/Sources/Itim.ttf')
+        QFontDatabase.addApplicationFont('Python/Projetos/Financial Manager/Files/Sources/Itim.ttf')
         #Inicializações das Funções
         self.Window_Config()
         self.BackGraund()
@@ -23,7 +21,7 @@ class Window_Login(QWidget):
         self.setFixedSize(920, 580)
 
     def BackGraund(self):
-        Img = QPixmap('Python/Projetos/Financial Manager/Images/BackGraund/BackGround-Login.png')
+        Img = QPixmap('Python/Projetos/Financial Manager/Files/Images/BackGraund/BackGround-Login.png')
         Label_BackGraund = QLabel(self)
         Label_BackGraund.setPixmap(Img)
 
@@ -51,6 +49,16 @@ class Window_Login(QWidget):
         Password = QLabel('Password', self)
         Password.setGeometry(392, 243, 65, 17)
         Password.setStyleSheet(""" 
+            QLabel{
+                font-family: Itim;
+                font-size: 14px;
+                color: white;
+            }
+        """)
+
+        Or = QLabel('Or', self)
+        Or.setGeometry(450, 354, 21, 19)
+        Or.setStyleSheet(""" 
             QLabel{
                 font-family: Itim;
                 font-size: 14px;
@@ -95,11 +103,11 @@ class Window_Login(QWidget):
                 border: 2px solid #00FFD4;
             }
         """)
+
     def Button(self):
-        Get_Start = QPushButton('Get Start',self)
-        Get_Start.setGeometry(422, 317, 80, 30)
-        #Get_Start.setFont('Itim')
-        Get_Start.setStyleSheet(""" 
+        self.Get_Start = QPushButton('Get Start',self)
+        self.Get_Start.setGeometry(422, 317, 80, 30)
+        self.Get_Start.setStyleSheet(""" 
             QPushButton{
                 background-color: #242333; 
                 border-radius: 15px; 
@@ -129,14 +137,5 @@ class Window_Login(QWidget):
         """)
 
     def State(self):
+        self.f = 1
         return True
-
-#Janela Principal
-class Window_Main(QWidget):
-    def __init__(self):
-        super().__init__()
-        #Inicializações das Funções
-        self.Window_Config()
-
-    def Window_Config(self):
-        pass

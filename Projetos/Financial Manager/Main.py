@@ -11,24 +11,30 @@ de interfaces gráficas e banco de dados.
 ----------------------------------------------------------------------
 """
 
-#Importações
+#Importação de bibliotecas
+from Files.Libraries.Qt_Core.Qt_Core import *
+from Files.Libraries.Windows.Login_SingUp import Login
 import sys
-from PySide6.QtWidgets import QApplication
-from Libraries import Windows
+
+#Login Window
+class Login_Window(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        
+        #Setup Login Window
+        self.Ui = Login.UI_Login_Window()
+        self.Ui.Setup(self)
+
+        #Exibe as alterações
+        self.show()
 
 #Inicio do Loop
 MyApp = QApplication(sys.argv)
 
 # ----> Conteúdo do Loop <----
+
 #Inicia a Tela de Login
-Wind_Login = Windows.Window_Login()
-State = Wind_Login.State()
+Login_Window_ = Login_Window()
 
-#Verifica se a Proxima Tela deve ser Executada
-if State is True:
-    #Wind_Login.close()
-    #Wind_Main = Windows.Windows_Main()
-    pass
-
-#Final do Loop
-MyApp.exec()
+#Fim do Loop
+sys.exit(MyApp.exec())
