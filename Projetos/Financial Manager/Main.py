@@ -23,7 +23,7 @@ class Login_Window(QMainWindow):
         
         #Setup Login Window
         self.Ui = Login.UI_Login_Window()
-        self.Ui.Setup(self)
+        self.Ui.Setup(self, 1)
 
         #Exibe as alterações
         self.show()

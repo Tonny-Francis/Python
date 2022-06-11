@@ -122,7 +122,6 @@ class Window_Login(QWidget):
 
         Sign_Up = QPushButton('Sign Up',self)
         Sign_Up.setGeometry(422, 385, 80, 30)
-        #Get_Start.setFont('Itim')
         Sign_Up.setStyleSheet(""" 
             QPushButton{
                 background-color: #242333; 
