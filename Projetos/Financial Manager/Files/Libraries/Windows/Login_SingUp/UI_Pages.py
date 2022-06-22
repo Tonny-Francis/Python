@@ -1,223 +1,159 @@
 from  Files.Libraries.Qt_Core.Qt_Core import *
+from  Files.Libraries.Qt_Core.Widgets import*
 
 class Ui_Login_SingUp_Pages(object):
-    def setupUi(self, StackedWidget, State_Page):
-        #Verificação padrão do Qt
-        if not StackedWidget.objectName():
-            StackedWidget.setObjectName(u"StackedWidget")
+    def setupUi(self, Login):
+        Login.resize(720, 480)
 
-        # ----------------------> Main Widgets <---------------------
-        self.Main_Frame = QFrame()
-        self.Main_Frame.setMinimumSize(720, 480)
-        self.Main_Frame.setStyleSheet('background-color: #242333')
+        #Instanciando Widgets
+        self.Widget = Widgets()
 
-        self.Main_Layout = QVBoxLayout(self.Main_Frame)
-        self.Main_Layout.setContentsMargins(0, 0, 0, 0)
-        self.Main_Layout.setSpacing(15)
-        self.Main_Layout.setAlignment(Qt.AlignCenter)
+        ''' ----> Abreviações <----
+        Lt - Layout
+        Fr - Frame
+        Lb - Label
+        Bt - Button
+        Ld - Lineedit
+        '''
+        # ----> Sing in <----
+        self.Page_Sing_In = QWidget()
 
-        if State_Page == 1:
-            # --------------------> Widgets de Perfil <------------------
-            self.Login_Frame = QFrame()
-            self.Login_Frame.setMinimumSize(225, 365)
-            self.Login_Frame.setMaximumSize(225, 365)
+        self.Page_Sing_In_Lt = QVBoxLayout(self.Page_Sing_In)
+        self.Page_Sing_In_Lt.setAlignment(Qt.AlignCenter)
 
-            self.Img_QPixmap = QPixmap('Python/Projetos/Financial Manager/Files/Images/IMG1.png')
-            self.Login_Background_Label = QLabel(self.Login_Frame)
-            self.Login_Background_Label.setPixmap(self.Img_QPixmap)
-        
-            self.Login_Label = QLabel('Login', self.Login_Frame)
-            self.Login_Label.setGeometry(68, 45, 84, 54)
-            self.Login_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 36px;
-                    color: white;
-                }
-            """)
+        self.Sing_In_Fr = self.Widget.WFrame(self.Page_Sing_In, 160, 237, 160, 237)
+        self.Sing_In_Fr.setStyleSheet('background-color: #eef0f2;')
 
-            self.User_Label = QLabel('User', self.Login_Frame)
-            self.User_Label.setGeometry(42, 94, 47, 17)
-            self.User_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 14px;
-                    color: white;
-                }
-            """)
+        # ----> Sing up <----
+        self.Page_Sing_Up = QWidget()
 
-            self.Password_Label = QLabel('Password', self.Login_Frame)
-            self.Password_Label.setGeometry(42, 143, 65, 17)
-            self.Password_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 14px;
-                    color: white;
-                }
-            """)
+        self.Page_Sing_Up_Lt = QVBoxLayout(self.Page_Sing_Up)
+        self.Page_Sing_Up_Lt.setAlignment(Qt.AlignCenter)
 
-            self.Or_Label = QLabel('Or', self.Login_Frame)
-            self.Or_Label.setGeometry(100, 254, 21, 19)
-            self.Or_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 14px;
-                    color: white;
-                }
-            """)
+        self.Sing_Up_Fr = self.Widget.WFrame(self.Page_Sing_Up, 160, 284, 160, 284)
+        self.Sing_Up_Fr.setStyleSheet('background-color: #eef0f2;')
 
-            self.User_Lineedit = QLineEdit(self.Login_Frame)
-            self.User_Lineedit.setGeometry(30, 111, 160, 30)
-            self.User_Lineedit.setAlignment(Qt.AlignCenter)
-            self.User_Lineedit.setMaxLength(15)
-            self.User_Lineedit.setStyleSheet(""" 
-                QLineEdit{
-                    background-color: rgba(255, 255, 255, 100);
-                    border-radius: 15px;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-            """)
+        # ---> Send Email <----
+        self.Page_Send_Email = QWidget()
 
-            self.Password_Lineedit = QLineEdit(self.Login_Frame)
-            self.Password_Lineedit.setEchoMode(QLineEdit.EchoMode.Password)
-            self.Password_Lineedit.setAlignment(Qt.AlignCenter)
-            self.Password_Lineedit.setGeometry(30, 160, 160, 30)
-            self.Password_Lineedit.setMaxLength(15)
-            self.Password_Lineedit.setStyleSheet(""" 
-                QLineEdit{
-                    background-color: rgba(255, 255, 255, 100);
-                    border-radius: 15px;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-            """)
+        self.Page_Send_Email_Lt = QVBoxLayout(self.Page_Send_Email)
+        self.Page_Send_Email_Lt.setAlignment(Qt.AlignCenter)
 
-            self.Get_Start_Button = QPushButton('Get Start', self.Login_Frame)
-            self.Get_Start_Button.setGeometry(72, 217, 80, 30)
-            self.Get_Start_Button.setStyleSheet(""" 
-                QPushButton{
-                    background-color: #242333; 
-                    border-radius: 15px; 
-                    color: white;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-                QPushButton:hover{
-                    border: 2px solid #888890;
-                }
-            """)
+        self.Send_Email_Fr = self.Widget.WFrame(self.Page_Send_Email, 210, 196, 210, 196)
+        self.Send_Email_Fr.setStyleSheet('background-color: #eef0f2;')
 
-            self.Sign_Up_Button = QPushButton('Sign Up', self.Login_Frame)
-            self.Sign_Up_Button.setGeometry(72, 285, 80, 30)
-            self.Sign_Up_Button.setStyleSheet(""" 
-                QPushButton{
-                    background-color: #242333; 
-                    border-radius: 15px; 
-                    color: white;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-                QPushButton:hover{
-                    border: 2px solid #888890;
-                }
-            """)
- 
-            # -------------------> Adicionando no Main <-----------------
-            self.Main_Layout.addWidget(self.Login_Frame)
+        # ---> Forgot Password <----
+        self.Page_Forgot = QWidget()
 
-            StackedWidget.addWidget(self.Main_Frame)
+        self.Page_Forgot_Lt = QVBoxLayout(self.Page_Forgot)
+        self.Page_Forgot_Lt.setAlignment(Qt.AlignCenter)
 
-        elif State_Page == 0:
-            # ---------------------> Sing Up <--------------------
-            self.SingUp_Frame = QFrame()
-            self.SingUp_Frame.setMinimumSize(225, 365)
-            self.SingUp_Frame.setMaximumSize(225, 365)
+        self.Forgot_Fr = self.Widget.WFrame(self.Page_Forgot, 160, 163, 160, 163)
+        self.Forgot_Fr.setStyleSheet('background-color: #eef0f2;')
 
-            self.Img_QPixmap = QPixmap('Python/Projetos/Financial Manager/Files/Images/IMG1.png')
-            self.SingUp_Background_Label = QLabel(self.SingUp_Frame)
-            self.SingUp_Background_Label.setPixmap(self.Img_QPixmap)
-        
-            self.SingUp_Label = QLabel('Sing Up', self.SingUp_Frame)
-            self.SingUp_Label.setGeometry(49, 80, 122, 54)
-            self.SingUp_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 36px;
-                    color: white;
-                }
-            """)
+        # -------------> Itens da pagina Sing in <-------------
+        self.Bt_Sing_Up_1 = self.Widget.WButton('Sing up', self.Sing_In_Fr, 80, 0, 80, 30, 
+        '#eef0f2', '15px', '#242333', 'Itim', '12pt', 'normal', '0px') 
 
-            self.User_Label = QLabel('User', self.SingUp_Frame)
-            self.User_Label.setGeometry(42, 129, 47, 17)
-            self.User_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 14px;
-                    color: white;
-                }
-            """)
+        self.Bt_Sing_In_Top_1 = self.Widget.WButton('Sing in', self.Sing_In_Fr, 0, 0, 80, 30,
+        '#242333', '15px', '#eef0f2', 'Itim', '12pt', 'normal','0px') 
 
-            self.Password_Label = QLabel('Password', self.SingUp_Frame)
-            self.Password_Label.setGeometry(42, 178, 65, 17)
-            self.Password_Label.setStyleSheet(""" 
-                QLabel{
-                    background-color: rgba(255, 255, 255, 0);
-                    font-family: Itim;
-                    font-size: 14px;
-                    color: white;
-                }
-            """)
+        self.Bt_Sing_In_Bottom_1 = self.Widget.WButton('SING IN', self.Sing_In_Fr, 0, 207, 160, 
+        30, '#242333', '15px', '#eef0f2', 'Itim', '12pt', 'normal','1px solid #eef0f2')
 
-            self.User_Lineedit = QLineEdit(self.SingUp_Frame)
-            self.User_Lineedit.setGeometry(30, 146, 160, 30)
-            self.User_Lineedit.setAlignment(Qt.AlignCenter)
-            self.User_Lineedit.setMaxLength(15)
-            self.User_Lineedit.setStyleSheet(""" 
-                QLineEdit{
-                    background-color: rgba(255, 255, 255, 100);
-                    border-radius: 15px;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-            """)
+        self.Bt_Forgot_1 = self.Widget.WButton('Forgot password?', self.Sing_In_Fr, 0, 177, 
+        118, 19, '#eef0f2', '15px', '#242333', 'Itim', '12pt', 'underline','0px') 
 
-            self.Password_Lineedit = QLineEdit(self.SingUp_Frame)
-            self.Password_Lineedit.setEchoMode(QLineEdit.EchoMode.Password)
-            self.Password_Lineedit.setAlignment(Qt.AlignCenter)
-            self.Password_Lineedit.setGeometry(30, 195, 160, 30)
-            self.Password_Lineedit.setMaxLength(15)
-            self.Password_Lineedit.setStyleSheet(""" 
-                QLineEdit{
-                    background-color: rgba(255, 255, 255, 100);
-                    border-radius: 15px;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-            """)
+        self.Lb_User_1 = self.Widget.WLabel('User', self.Sing_In_Fr, 0, 61, 35, 14, '#242333',
+        'Itim', '12pt')  
 
-            self.Get_Start_Button = QPushButton('Get Start', self.SingUp_Frame)
-            self.Get_Start_Button.setGeometry(72, 252, 80, 30)
-            self.Get_Start_Button.setStyleSheet(""" 
-                QPushButton{
-                    background-color: #242333; 
-                    border-radius: 15px; 
-                    color: white;
-                    font-family: Itim;
-                    font-size: 16px
-                }
-                QPushButton:hover{
-                    border: 2px solid #888890;
-                }
-            """)
- 
-            # -------------------> Adicionando no Main <-----------------
-            self.Main_Layout.addWidget(self.SingUp_Frame)
+        self.Lb_Password_1 = self.Widget.WLabel('Password', self.Sing_In_Fr, 0, 118, 65, 16, '#242333',
+        'Itim', '12pt') 
 
-            StackedWidget.addWidget(self.Main_Frame)
+        self.Ld_User_1 = self.Widget.WLineedit(self.Sing_In_Fr, 0, 77, 160, 30, 15, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333') 
+
+        self.Ld_Password_1 = self.Widget.WLineedit_Password(self.Sing_In_Fr, 0, 134, 160, 30, 15, 
+        '#242333', 'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333')
+
+        self.Page_Sing_In_Lt.addWidget(self.Sing_In_Fr)
+
+        # -------------> Itens da pagina Sing up <-------------
+        self.Bt_Sing_Up_2 = self.Widget.WButton('Sing up', self.Sing_Up_Fr, 80, 0, 80, 30,
+        '#242333', '15px', '#eef0f2', 'Itim', '12pt', 'normal', '0px') 
+
+        self.Bt_Sing_In_Top_2 = self.Widget.WButton('Sing in', self.Sing_Up_Fr, 0, 0, 80, 30,
+        '#eef0f2', '15px', '#242333', 'Itim', '12pt', 'normal', '0px') 
+
+        self.Bt_Sing_Up_Bottom_2 = self.Widget.WButton('SING UP', self.Sing_Up_Fr, 0, 254, 160, 30,
+        '#212333', '15px', '#eef0f2', 'Itim', '12pt', 'normal', '1px solid #eef0f2') 
+
+        self.Lb_Email_2 = self.Widget.WLabel('E-mail Address', self.Sing_Up_Fr, 0, 62, 105, 14,
+        '#242333', 'Itim', '12pt')
+
+        self.Lb_User_2 = self.Widget.WLabel('User', self.Sing_Up_Fr, 0, 119, 35, 14, '#242333', 
+        'Itim', '12pt')
+
+        self.Lb_User_2 = self.Widget.WLabel('Password', self.Sing_Up_Fr, 0, 175, 64, 16, '#242333', 
+        'Itim', '12pt')
+
+        self.Ld_Email_2 = self.Widget.WLineedit(self.Sing_Up_Fr, 0, 77, 160, 30, 50, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333') 
+
+        self.Ld_User_2 = self.Widget.WLineedit(self.Sing_Up_Fr, 0, 134, 160, 30, 15, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333') 
+
+        self.Ld_Password_2 = self.Widget.WLineedit_Password(self.Sing_Up_Fr, 0, 191, 160, 30, 15, 
+        '#242333', 'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333')  
+
+        self.Page_Sing_Up_Lt.addWidget(self.Sing_Up_Fr)
+
+        # -------------> Itens da pagina Send email <--------------
+        self.Lb_text_3 = self.Widget.WLabel('Enter the username\nassociated with the account to\nrecover the password.',
+        self.Send_Email_Fr, 0, 0, 210, 60, '#242333', 'Itim', '12pt')
+        self.Lb_text_3.setAlignment(Qt.AlignHCenter)
+
+        self.Lb_User_3 = self.Widget.WLabel('Username', self.Send_Email_Fr, 0, 105, 105, 14, '#242333', 
+        'Itim', '12pt')
+
+        self.Ld_User_3 = self.Widget.WLineedit(self.Send_Email_Fr, 0, 120, 210, 30, 15, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333')
+
+        self.Bt_Send_3 = self.Widget.WButton('SEND', self.Send_Email_Fr, 0, 166, 210, 30, '#212333',
+        '15px', '#eef0f2', 'Itim', '12pt', 'normal', '1px solid #eef0f2') 
+
+        self.Page_Send_Email_Lt.addWidget(self.Send_Email_Fr)
+
+        # -------------> Itens da pagina Forgot Password <--------------
+        self.Lb_code_4 = self.Widget.WLabel('What code did you get?', self.Forgot_Fr, 0, 0, 160, 19, 
+        '#242333', 'Itim', '12pt')
+        self.Lb_code_4.setAlignment(Qt.AlignCenter)
+
+        self.Ld_Digit_1_4 = self.Widget.WLineedit(self.Forgot_Fr, 0, 30, 32.5, 30, 1, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '10px', '2px solid #242333', '2px solid #242333')
+
+        self.Ld_Digit_2_4 = self.Widget.WLineedit(self.Forgot_Fr, 43, 30, 32.5, 30, 1, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '10px', '2px solid #242333', '2px solid #242333')
+
+        self.Ld_Digit_3_4 = self.Widget.WLineedit(self.Forgot_Fr, 86, 30, 32.5, 30, 1, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '10px', '2px solid #242333', '2px solid #242333') 
+
+        self.Ld_Digit_4_4 = self.Widget.WLineedit(self.Forgot_Fr, 128, 30, 32.5, 30, 1, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '10px', '2px solid #242333', '2px solid #242333')
+
+        self.Lb_New_Password_4 = self.Widget.WLabel('New Password', self.Forgot_Fr, 0, 72, 100, 19, 
+        '#242333', 'Itim', '12pt')
+
+        self.Ld_New_Passord_4 = self.Widget.WLineedit_Password(self.Forgot_Fr, 0, 89, 160, 30, 15, '#242333', 
+        'Itim', '12pt', '2px solid #888890', '15px', '2px solid #242333', '2px solid #242333')
+
+        self.Bt_Chage_Password_4 = self.Widget.WButton('CHANGE', self.Forgot_Fr, 0, 133, 160, 30, 
+        '#212333', '15px', '#eef0f2', 'Itim', '12pt', 'normal', '1px solid #eef0f2') 
+
+        self.Page_Forgot_Lt.addWidget(self.Forgot_Fr)
+
+        #Adiciona as paginas
+        Login.addWidget(self.Page_Sing_In)
+        Login.addWidget(self.Page_Sing_Up)
+        Login.addWidget(self.Page_Send_Email)
+        Login.addWidget(self.Page_Forgot)
